@@ -1,0 +1,11 @@
+.env
+knowledge_graph.gv
+notebook.ipynb
+the_catcher_in_the_rye.ipynb
+opens-notebook.ipynb
+
+.DS_Store
+__pycache__/
+
+/miscellaneous
+/response
