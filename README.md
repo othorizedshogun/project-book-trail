@@ -1,5 +1,5 @@
 # project: book trail
-[![wakatime](https://wakatime.com/badge/user/018c9913-55f8-4cc2-9082-b8ae476fb207/project/018da38b-0797-4a08-bae6-caf7c25bf14b.svg)](https://wakatime.com/badge/user/018c9913-55f8-4cc2-9082-b8ae476fb207/project/018da38b-0797-4a08-bae6-caf7c25bf14b)
+<!-- [![wakatime](https://wakatime.com/badge/user/018c9913-55f8-4cc2-9082-b8ae476fb207/project/018da38b-0797-4a08-bae6-caf7c25bf14b.svg)](https://wakatime.com/badge/user/018c9913-55f8-4cc2-9082-b8ae476fb207/project/018da38b-0797-4a08-bae6-caf7c25bf14b) -->
 
 <!-- ## **Introduction** -->
 This project aims to deliver an application that analyzes characters in a novel, recognizing their interactions, traits, and development. This document explains how we plan to achieve this. In simple terms, novels, specifically fiction, tell stories through various events. These events rely on character actions, interactions, and settings. By extracting this information, we can present and understand characters better.
