@@ -79,6 +79,10 @@ class EventRepository(BaseModel):
                 character_events_mapping[character_id].append(event)
         
         return dict(character_events_mapping)
+    
+    def get_repository_with_last_four_events(self) -> "EventRepository":
+        """Return a new repository with everything in the current repository but only with the last four events."""
+        return EventRepository(events=self.events[-4:], allCharactersInBook=self.allCharactersInBook, allLocationsInBook=self.allLocationsInBook)
 
 
 def update_and_deduplicate_items(existing_list: List[Event]|List[Character]|List[Location], new_list: List[Event]|List[Character]|List[Location]) -> List[Event]|List[Character]|List[Location]:

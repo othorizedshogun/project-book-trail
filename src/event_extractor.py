@@ -57,8 +57,8 @@ def extract_events(client: openai.OpenAI, chunks: List[str]) -> EventRepository:
                 },
                 {
                     "role": "user",
-                    "content": f"""Here is the current state of the repository:
-                    {cur_state.model_dump_json(indent=2)}"""
+                    "content": f"""Here is the current state of the repository, with the last couple events:
+                    {(cur_state.get_repository_with_last_four_events()).model_dump_json(indent=2)}"""
                 }
             ]
         )

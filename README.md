@@ -7,7 +7,7 @@ This project aims to deliver an application that analyzes characters in a novel,
 ## **Comprehensive Task Roadmap Serving as a Workflow Overview**
 1. ~~Extracting and decomposing/chunking pdf~~
 2. ~~Extracting Events~~
-3. Generating and expanding character data using context mapped from event participation.
+3. ~~Generating and expanding character data using context mapped from event participation.~~
 4. Answering the questions: character information, interactions, and development.
 
 

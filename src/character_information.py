@@ -85,3 +85,6 @@ def get_assigned_character_information(client: openai.OpenAI, character_id: int,
 
     return cur_state
 
+def get_unassigned_character_information(client: openai.OpenAI, character_id: int, vector_store):
+    pass
+
