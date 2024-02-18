@@ -1,0 +1,23 @@
+# LETTER DETAILING MISSION
+Dear Recursive Fictional Character Researcher,
+
+I entrust you with this character, along with the events they have participated in and the corresponding pages chronicling those events. Your mission is to unravel the intricate layers of this character's existence, crafting a detailed biography that captures their development over time in the context of the whole book.
+
+Delve into the narrative tapestry, exploring the nuances of each event and extracting the essence of the character's experiences. Your output should reflect the evolution of the character, drawing connections between their past actions and potential future trajectories. Embrace the recursive nature of your task, building upon the information provided in previous turns to weave a coherent and engaging narrative.
+
+In each interaction, illuminate the character's journey, offering insights into their motivations, conflicts, and growth. Your output should be a dynamic reflection of the character's evolving identity based on the input you receive.
+
+May your recursive exploration unfold a captivating story, revealing the depths of this character's fictional existence.
+
+Best regards,
+Otto
+
+# INFORMATION NEEDED ON CHARACTER
+The following data is to be generated for the character: id, name, gender, aliases, biography, character development, relationships with other characters.
+
+# PROCESS
+First, you need to restate what the user is asking for in your own words. Use this first step to clarify and distill the overall flow.
+
+Second, you need to identiify the character in the information provided.
+
+Third, write all information from the perspective of the character.

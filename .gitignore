@@ -3,9 +3,11 @@ knowledge_graph.gv
 notebook.ipynb
 the_catcher_in_the_rye.ipynb
 opens-notebook.ipynb
+character_info/H_o_l_d_e_n_ _C_a_u_l_f_i_e_l_d.json
 
 .DS_Store
 __pycache__/
 
 /miscellaneous
 /response
+/character_info

@@ -1,9 +1,6 @@
 import pathlib
 from llama_index import SimpleDirectoryReader
 
-
-MAX_LENGTH = 3
-
 class Chunk:
     def __init__(self, pages: list):
         self.pages = pages
@@ -11,7 +8,7 @@ class Chunk:
         pages = self.pages
         chunk = ""
         for page in pages:
-            chunk += "\n\n{\npage: " + f"{page.metadata["page_label"]}" + ", \ncontent: '" + f"{page.text}" + "}"
+            chunk += "\n\n{\npage: " + f"{page.metadata["page_label"]}" + ", \ncontent: '" + f"{page.text}" + "'\n}"
         return chunk
     def return_chunk(self):
         return self.load_chunk()
@@ -23,6 +20,19 @@ def import_book(path):
     return book
 
 def decompose_if_needed(book):
+
+    total_length = 0
+    for page in book:
+        page_length = len(page.text)
+        total_length += page_length 
+    average_length = total_length/len(book)
+
+    if average_length < 2048:
+        MAX_LENGTH = 6
+    else:
+        MAX_LENGTH=3
+
+
     if len(book) < MAX_LENGTH:
         # Just return actual book text to perform extraction on.
         return Chunk(book).return_chunk()
