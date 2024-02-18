@@ -10,6 +10,8 @@ This project aims to deliver an application that analyzes characters in a novel,
 3. ~~Generating and expanding character data using context mapped from event participation.~~
 4. Answering the questions: character information, interactions, and development.
 
+### ** Detail
+The process involves recursively extracting an event repository from the book. This repository comprises a comprehensive list of characters and locations, accompanied by crucial events shaping the narrative. Characters fall into two categories: assigned and unassigned. Assigned characters are directly linked to key events, enabling straightforward information retrieval. Unassigned characters, however, did not actively participate in these events, making their information gathering more complex. For unassigned characters, a semantic search is employed under the assumption that all necessary context can be obtained through this method.
 
 ## **Other Information**
 ### **Data Structures (WIP)**
