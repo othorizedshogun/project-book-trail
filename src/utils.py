@@ -19,6 +19,26 @@ def import_book(path):
     book =  SimpleDirectoryReader(file_path).load_data()
     return book
 
+def remove_pages(book, start_page, end_page):
+    pages_to_delete = []
+
+    if start_page is None:
+        start_page = 0
+
+    if end_page is None:
+        end_page = len(book) - 1
+
+    for i in list(range(0, start_page-1)) + list(range(end_page, len(book))):
+        if 0 <= i < len(book):
+            pages_to_delete.append(book[i].metadata["page_label"])
+
+    for num in pages_to_delete:
+        for i, page in enumerate(book):
+            if page.metadata["page_label"] == num:
+                book.pop(i)
+                break
+
+
 def decompose_if_needed(book):
 
     total_length = 0

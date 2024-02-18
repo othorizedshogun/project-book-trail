@@ -13,6 +13,22 @@ This project aims to deliver an application that analyzes characters in a novel,
 ### **Detail**
 The process involves recursively extracting an event repository from the book. This repository comprises a comprehensive list of characters and locations, accompanied by crucial events shaping the narrative. Characters fall into two categories: assigned and unassigned. Assigned characters are directly linked to key events, enabling straightforward information retrieval. Unassigned characters, however, did not actively participate in these events, making their information gathering more complex. For unassigned characters, a semantic search is employed under the assumption that all necessary context can be obtained through this method.
 
+## Setup
+* Create an environment, clone this repository and install requiremnets
+```bash
+git clone https://github.com/othorizedshogun/project-book-trail.git
+pip install -r requirements.txt
+```
+* Run program using file path to the pdf book
+```bash
+python src/main.py -f <file_path>
+```
+* Optional: You might want to specify new boundaries to the book, indicating the your prefferred start and/or end incase there are other contents in the book (acknowledgements, dedication, table of contents)
+```
+python script.py -f <file_path> -s <start_page> -e <end_page>
+```
+
+
 ## **Other Information**
 ### **Data Structures (WIP)**
 | Structure        | Attributes                                                                                                             |
