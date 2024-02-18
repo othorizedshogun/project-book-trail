@@ -16,7 +16,7 @@ from utils import import_book, decompose_if_needed, remove_pages
 client = instructor.patch(OpenAI())
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(usage="python script.py <file_path> start [boundary2]")
+    parser = argparse.ArgumentParser(usage="python script.py <file_path> <start_page> <end_page>")
 
     parser.add_argument("-f", "--File_path", help = "File Path")
     parser.add_argument("-s", "--Start_page", help = "Start Page")
