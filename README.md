@@ -19,6 +19,7 @@ The process involves recursively extracting an event repository from the book. T
 git clone https://github.com/othorizedshogun/project-book-trail.git
 pip install -r requirements.txt
 ```
+Important: OPEN_AI_KEY varible must be present in environment.
 * Run program using file path to the pdf book
 ```bash
 python src/main.py -f <file_path>
