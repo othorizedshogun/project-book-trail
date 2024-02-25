@@ -43,7 +43,7 @@ if __name__ == "__main__":
     chunks = decompose_if_needed(book)
 
     print("Extracting events...")
-    event_repository = extract_events(client=client, chunks=chunks)
+    event_repository = extract_events(client=client, chunks=chunks, path=book_path)
 
     end_time = time.time()
     execution_time = end_time - start_time
@@ -60,7 +60,7 @@ if __name__ == "__main__":
         os.makedirs(character_info_folder)
 
     for character_id in assigned_characters:
-        get_assigned_character_information(client=client,  character_id=character_id, event_repository=event_repository, novel=book, events_by_character=events_by_character)
+        get_assigned_character_information(client=client,  character_id=character_id, event_repository=event_repository, novel=book, events_by_character=events_by_character, path=book_path)
     for character_id in unassigned_characters:
-        get_unassigned_character_information(client=client, character_id=character_id, event_repository=event_repository, novel=book)
+        get_unassigned_character_information(client=client, character_id=character_id, event_repository=event_repository, novel=book, path=book_path)
         

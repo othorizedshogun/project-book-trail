@@ -1,3 +1,4 @@
+import pathlib
 from typing import List
 from datetime import datetime
 
@@ -11,15 +12,16 @@ from utils import get_prompt
 system_message = get_prompt("system_messages/event_extractor.txt")
 user_prompt = get_prompt("user_prompts/event_extractor.txt")
 
-def extract_events(client: openai.OpenAI, chunks: List[str]) -> EventRepository:
+def extract_events(client: openai.OpenAI, chunks: List[str], path) -> EventRepository:
     cur_state = EventRepository()
 
     # create json file with event repository
-    response_folder = "event_repository"
+    root = pathlib.Path(path).parent.parents[0]
+    response_folder = root/"event_repository"
     if not os.path.exists(response_folder):
         os.makedirs(response_folder)
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-    response_file_path = f"event_repository/event_repository_{timestamp}.json"
+    response_file_path = response_folder/f"event_repository_{timestamp}.json"
 
     num_iterations = len(chunks)
     print(F"Number of Chunks: {num_iterations}")
