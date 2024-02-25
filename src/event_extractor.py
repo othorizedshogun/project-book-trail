@@ -4,7 +4,7 @@ from datetime import datetime
 import openai
 import os
 
-from models import Character, EventRepository
+from models import EventRepository
 from analyzer import Analysis, generate_analysis
 from utils import get_prompt
     
@@ -26,8 +26,8 @@ def extract_events(client: openai.OpenAI, chunks: List[str]) -> EventRepository:
     for i, inp in enumerate(chunks):
         print(f"Performing extraction on: {i+1} of  {num_iterations}")
         analysis: Analysis =  generate_analysis(client=client, chunk=inp)
-        events = [event for event in analysis.events][:-4]
-        characters = [Character for character in analysis.characters]
+        events = [event for event in analysis.events][-4:]
+        characters = [character for character in analysis.characters]
         locations = [location for location in analysis.locations]
 
         analysis_insert = """chain_of_thought: {chain_of_thought}
@@ -49,7 +49,7 @@ def extract_events(client: openai.OpenAI, chunks: List[str]) -> EventRepository:
                 {
                     "role": "user",
                     "content": (
-                        f"""Extract any new events and characters from the following:
+                        f"""Extract any new event, character and location from the following:
                         # Part {i}/{num_iterations} of the book:
                         
                         {inp}""" + analysis_insert + user_prompt
@@ -58,7 +58,7 @@ def extract_events(client: openai.OpenAI, chunks: List[str]) -> EventRepository:
                 {
                     "role": "user",
                     "content": f"""Here is the current state of the repository, with the last couple events:
-                    {(cur_state.get_repository_with_last_four_events()).model_dump_json(indent=2)}"""
+                    {(cur_state.get_repository_with_last_two_events()).model_dump_json(indent=2)}"""
                 }
             ]
         )
@@ -69,8 +69,8 @@ def extract_events(client: openai.OpenAI, chunks: List[str]) -> EventRepository:
         
         
         """)
-    with open(response_file_path, "w") as file:
-        file.write(cur_state.model_dump_json(indent=2))
-    print(f"Events saved to: {response_file_path}")
+        with open(response_file_path, "w") as file:
+            file.write(cur_state.model_dump_json(indent=2))
+        print(f"Events saved to: {response_file_path}")
     
     return cur_state

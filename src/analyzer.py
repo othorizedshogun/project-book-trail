@@ -3,14 +3,8 @@ from typing import List
 
 import openai
 
+from models import Analysis
 from utils import get_prompt
-
-class Analysis(BaseModel):
-    chain_of_thought: str
-    analysis: str
-    events: List[str]
-    characters: List[str]
-    locations: List[str]
 
 system_message = get_prompt("system_messages/analyzer.txt")
 user_prompt = get_prompt("user_prompts/analyzer.txt")

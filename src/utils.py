@@ -48,9 +48,9 @@ def decompose_if_needed(book):
     average_length = total_length/len(book)
 
     if average_length < 2048:
-        MAX_LENGTH = 6
+        MAX_LENGTH = 4
     else:
-        MAX_LENGTH=3
+        MAX_LENGTH=2
 
 
     if len(book) < MAX_LENGTH:

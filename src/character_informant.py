@@ -85,6 +85,63 @@ def get_assigned_character_information(client: openai.OpenAI, character_id: int,
 
     return cur_state
 
-def get_unassigned_character_information(client: openai.OpenAI, character_id: int, vector_store):
-    pass
+def get_unassigned_character_information(client: openai.OpenAI, character_id: int, novel, event_repository):
+    character = get_character_by_id(character_id, event_repository)
+    cur_state = CharacterInformation(
+        id=character.id,
+        name=character.name,
+        gender=character.gender,
+        aliases=character.aliases,
+    )
+    other_characters = get_other_characters(character_id, event_repository)
+
+    pages = list(set(character.mentions))
+    num_iterations = len(pages)
+
+    print(f"Generating information on {character.name}...")
+    print(f"Number of pages: {num_iterations}")
+
+    system_message = get_prompt("system_messages/nu_character_researcher.txt")
+
+    for i, page in enumerate(pages):
+        print(f"Generating information on {character.name} from : {i+1} of {num_iterations}...")
+    
+        page_insert = "\n\n{\npage: " + f"{novel[page-1].metadata["page_label"]}" + ", \ncontent: '" + f"{novel[page-1].text}" + "'\n}"
+
+        new_updates = client.chat.completions.create(
+            model="gpt-4-turbo-preview",
+            temperature=0.7,
+            response_model=CharacterInformation,
+            messages=[
+                {
+                    "role": "system",
+                    "content": system_message
+                },
+                {
+                    "role": "user",
+                    "content": (
+                        f"""Given this new page, extract and rewrite information on {character.name}:
+                        # Page {i}/{num_iterations}:
+                        """ + page_insert
+                    )
+                },
+                {
+                    "role": "user",
+                    "content": f"""Here is the current information on the character {character.name}:
+                    {cur_state.model_dump_json(indent=2)}
+                    
+                    List of the other characters in the book:
+                    {other_characters}"""
+                },
+            ]
+        )
+        cur_state = cur_state.update(new_updates)
+        print(f"\n{cur_state}\n\n")
+        
+    character_info_file_path = f"character_info/{"_".join((character.name).split())}.json"
+    with open(character_info_file_path, "w") as file:
+        file.write(cur_state.model_dump_json(indent=2))
+    print(f"Information on {cur_state.name} saved to: {character_info_file_path}")
+
+    return cur_state
 
