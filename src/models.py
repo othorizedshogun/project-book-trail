@@ -98,18 +98,19 @@ class EventRepository(BaseModel):
 def update_and_deduplicate_items(existing_list: List[Event]|List[Character]|List[Location], new_list: List[Event]|List[Character]|List[Location]) -> List[Event]|List[Character]|List[Location]:
     updated_list = existing_list.copy()
 
-    for new_item in new_list:
-        existing_item_index = next((i for i, item in enumerate(updated_list) if item.id == new_item.id), None)
+    if new_list is not None:
+        for new_item in new_list:
+            existing_item_index = next((i for i, item in enumerate(updated_list) if item.id == new_item.id), None)
 
-        if existing_item_index is not None:
-            if type(new_item) == Character:
-                updated_list[existing_item_index].name = new_item.name
-                updated_list[existing_item_index].aliases = list(set(updated_list[existing_item_index].aliases + new_item.aliases))
-                updated_list[existing_item_index].mentions = list(set(updated_list[existing_item_index].mentions + new_item.mentions))
+            if existing_item_index is not None:
+                if type(new_item) == Character:
+                    updated_list[existing_item_index].name = new_item.name
+                    updated_list[existing_item_index].aliases = list(set(updated_list[existing_item_index].aliases + new_item.aliases))
+                    updated_list[existing_item_index].mentions = list(set(updated_list[existing_item_index].mentions + new_item.mentions))
+                else:
+                    updated_list[existing_item_index] = new_item
             else:
-                updated_list[existing_item_index] = new_item
-        else:
-            updated_list.append(new_item)
+                updated_list.append(new_item)
 
     updated_list = list({item.id: item for item in updated_list}.values())
 

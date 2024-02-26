@@ -16,7 +16,7 @@ def extract_events(client: openai.OpenAI, chunks: List[str], path) -> EventRepos
     cur_state = EventRepository()
 
     # create json file with event repository
-    root = pathlib.Path(path).parent.parents[0]
+    root = pathlib.Path(path)
     response_folder = root/"event_repository"
     if not os.path.exists(response_folder):
         os.makedirs(response_folder)

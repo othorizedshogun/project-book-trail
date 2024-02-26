@@ -79,7 +79,7 @@ def get_assigned_character_information(client: openai.OpenAI, character_id: int,
         cur_state = cur_state.update(new_updates)
         print(f"\n{cur_state}\n\n")
         
-    root = pathlib.Path(path).parent.parents[0]
+    root = pathlib.Path(path)
     character_info_file_path = root/f"character_info/{"_".join((character.name).split())}.json"
     with open(character_info_file_path, "w") as file:
         file.write(cur_state.model_dump_json(indent=2))
@@ -140,7 +140,7 @@ def get_unassigned_character_information(client: openai.OpenAI, character_id: in
         cur_state = cur_state.update(new_updates)
         print(f"\n{cur_state}\n\n")
         
-    root = pathlib.Path(path).parent.parents[0]
+    root = pathlib.Path(path)
     character_info_file_path = root/f"character_info/{"_".join((character.name).split())}.json"
     with open(character_info_file_path, "w") as file:
         file.write(cur_state.model_dump_json(indent=2))

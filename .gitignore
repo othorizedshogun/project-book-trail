@@ -9,6 +9,7 @@ main_part.py
 
 .DS_Store
 __pycache__/
+event_repository/
 
 /miscellaneous
 /response
