@@ -23,6 +23,7 @@ system_message = get_prompt("system_messages/character_researcher.txt")
 user_prompt = get_prompt("user_prompts/character_researcher.txt")
 
 def get_assigned_character_information(client: openai.OpenAI, character_id: int, event_repository: EventRepository, novel, events_by_character, path) -> CharacterInformation:
+    root = pathlib.Path(path)
     character = get_character_by_id(character_id, event_repository)
     cur_state = CharacterInformation(
         id=character.id,
@@ -79,15 +80,15 @@ def get_assigned_character_information(client: openai.OpenAI, character_id: int,
         cur_state = cur_state.update(new_updates)
         print(f"\n{cur_state}\n\n")
         
-    root = pathlib.Path(path)
-    character_info_file_path = root/f"character_info/{"_".join((character.name).split())}.json"
-    with open(character_info_file_path, "w") as file:
-        file.write(cur_state.model_dump_json(indent=2))
-    print(f"Information on {cur_state.name} saved to: {character_info_file_path}")
+        character_info_file_path = root/f"character_info/{"_".join((character.name).split())}.json"
+        with open(character_info_file_path, "w") as file:
+            file.write(cur_state.model_dump_json(indent=2))
+        print(f"Information on {cur_state.name} saved to: {character_info_file_path}")
 
     return cur_state
 
 def get_unassigned_character_information(client: openai.OpenAI, character_id: int, novel, event_repository, path):
+    root = pathlib.Path(path)
     character = get_character_by_id(character_id, event_repository)
     cur_state = CharacterInformation(
         id=character.id,
@@ -140,11 +141,10 @@ def get_unassigned_character_information(client: openai.OpenAI, character_id: in
         cur_state = cur_state.update(new_updates)
         print(f"\n{cur_state}\n\n")
         
-    root = pathlib.Path(path)
-    character_info_file_path = root/f"character_info/{"_".join((character.name).split())}.json"
-    with open(character_info_file_path, "w") as file:
-        file.write(cur_state.model_dump_json(indent=2))
-    print(f"Information on {cur_state.name} saved to: {character_info_file_path}")
+        character_info_file_path = root/f"character_info/{"_".join((character.name).split())}.json"
+        with open(character_info_file_path, "w") as file:
+            file.write(cur_state.model_dump_json(indent=2))
+        print(f"Information on {cur_state.name} saved to: {character_info_file_path}")
 
     return cur_state
 
