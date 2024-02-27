@@ -11,7 +11,7 @@ This project aims to deliver an application that analyzes characters in a novel,
 4. ~~Asking the questions: character information, phyical description, arc, etc.~~
 
 ### **Detail**
-The process involves recursively extracting an event repository from the book. This repository comprises a comprehensive list of characters and locations, accompanied by crucial events shaping the narrative. Characters fall into two categories: assigned and unassigned. Assigned characters are directly linked to key events, enabling straightforward information retrieval. Unassigned characters, however, did not actively participate in these events, making their information gathering more complex. For unassigned characters, a semantic search is employed under the assumption that all necessary context can be obtained through this method.
+The process involves recursively extracting an event repository from the book. This repository comprises a comprehensive list of characters and locations, accompanied by crucial events shaping the narrative. Characters fall into two categories: assigned and unassigned. Assigned characters are directly linked to key events, enabling straightforward information retrieval. Unassigned characters, however, did not actively participate in these events, making their information gathering more complex. For unassigned characters, a search of their mentions generated during event extraction is used as context under the asssumption that they do not posses significant enough impact on the narrative.
 
 ## Setup
 * Create an environment, clone this repository and install requiremnets
